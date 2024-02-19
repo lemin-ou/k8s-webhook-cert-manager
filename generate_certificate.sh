@@ -106,12 +106,14 @@ fi
 set -e
 
 # create server cert/key CSR and send it to k8s api
+echo "creating certificate..."
 cat <<EOF | kubectl create -f -
-apiVersion: certificates.k8s.io/v1beta1
+apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
 metadata:
   name: ${csrName}
 spec:
+  signerName: beta.eks.amazonaws.com/app-serving
   groups:
   - system:authenticated
   request: $(base64 < "${tmpdir}/server.csr" | tr -d '\n')
@@ -158,7 +160,7 @@ echo "${serverCert}" | openssl base64 -d -A -out "${tmpdir}/server-cert.pem"
 kubectl create secret tls "${secret}" \
       --key="${tmpdir}/server-key.pem" \
       --cert="${tmpdir}/server-cert.pem" \
-      --dry-run -o yaml |
+      --dry-run=client -o yaml |
   kubectl -n "${namespace}" apply -f -
 
 caBundle=$(base64 < /run/secrets/kubernetes.io/serviceaccount/ca.crt  | tr -d '\n')
