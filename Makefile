@@ -1,5 +1,5 @@
-DOCKER_IMAGE_NAME=quay.io/didil/k8s-webhook-cert-manager
-DOCKER_IMAGE_TAG=0.13.19-1-a
+DOCKER_IMAGE_NAME=leminou/k8s-webhook-cert-manager
+DOCKER_IMAGE_TAG=v1.0.0
 
 .PHONY: all
 all: build
