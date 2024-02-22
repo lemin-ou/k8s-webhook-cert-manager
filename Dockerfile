@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM --platform=linux/amd64 alpine:3.12
 
 # This makes it easy to build tagged images with different `kubectl` versions.
 ARG KUBECTL_VERSION="v1.27.8"
