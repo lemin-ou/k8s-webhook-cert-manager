@@ -6,13 +6,13 @@ webhooks:
 - name: e2e-test-cert-manager-webhook.newrelic.com
   rules:
   - apiGroups:
-    - ""
+    - "apps"
     apiVersions:
     - v1
     operations:
     - CREATE
     resources:
-    - pods
+    - deployments
   clientConfig:
     service:
       namespace: "default"

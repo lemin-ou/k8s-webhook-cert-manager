@@ -6,7 +6,7 @@ usage() {
   cat <<EOF
 Generate certificate suitable for use with any Kubernetes Mutating Webhook.
 This script uses k8s' CertificateSigningRequest API to a generate a
-certificate signed by k8s CA suitable for use with any Kubernetes Mutating Webhook service pod.
+certificate signed by k8s CA suitable for use with any Kubernetes Mutating Webhook service deployment.
 This requires permissions to create and approve CSR. See
 https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster for
 detailed explantion and additional instructions.
